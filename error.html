@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sirius - 404</title>
+
+<style>
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at center, #0a0f2c, #000000);
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Background grid */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+}
+
+/* ERROR text */
+.error-text {
+    font-size: 120px;
+    font-weight: bold;
+    letter-spacing: 15px;
+    color: #ff003c;
+    text-shadow: 0 0 20px #ff003c;
+    z-index: 1;
+    animation: flicker 2s infinite alternate;
+}
+
+/* Center icon circle */
+.icon-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 0, 60, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+    box-shadow: 0 0 30px rgba(255,0,60,0.4);
+    z-index: 1;
+}
+
+.icon-circle span {
+    font-size: 50px;
+}
+
+/* Message box */
+.message-box {
+    background: rgba(20, 25, 60, 0.6);
+    padding: 20px 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    margin-top: 20px;
+    z-index: 1;
+}
+
+.message-box p {
+    margin: 0;
+    font-size: 18px;
+    color: #cbd5e1;
+}
+
+/* Button */
+.home-btn {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #ff003c, #ff4d6d);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.home-btn:hover {
+    box-shadow: 0 0 20px #ff003c;
+}
+
+/* Animation */
+@keyframes flicker {
+    from { opacity: 0.8; }
+    to { opacity: 1; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="error-text">404</div>
+
+<div class="icon-circle">
+    <span>⚠</span>
+</div>
+
+<div class="message-box">
+    <p>The page you're looking for doesn't exist.</p>
+</div>
+
+<button class="home-btn" onclick="goHome()">Return Home</button>
+
+<script>
+function goHome() {
+    window.location.href = "index.html"; 
+}
+</script>
+
+</body>
+</html>
