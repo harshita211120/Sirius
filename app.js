@@ -21,7 +21,7 @@ main()
 .catch((err)=>{console.log(err)});
 
 app.get("/",(req,res)=>{
-  res.send("Home page");
+ res.render("pages/Error.ejs");
 })
 
 app.get("/signup",(req,res)=>{
