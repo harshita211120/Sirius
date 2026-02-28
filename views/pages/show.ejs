@@ -1,0 +1,66 @@
+<% layout("layouts/boilerplate") %>
+<body>
+
+<div class="page-wrapper">
+    <div class="listing-container">
+
+        <h2>Listing Details</h2>
+
+        <% for(let listing of listings){ %>
+
+        <div class="listing-card">
+
+            <div class="listing-header">
+                <h3><%= listing.title %></h3>
+
+                <span class="status-badge <%= listing.status.toLowerCase() %>">
+                    <%= listing.status %>
+                </span>
+            </div>
+
+            <div class="listing-field">
+                <label>Description</label>
+                <p><%= listing.description || "No description provided" %></p>
+            </div>
+
+            <div class="listing-grid">
+
+                <div class="listing-field">
+                    <label>Category</label>
+                    <p><%= listing.category %></p>
+                </div>
+
+                <div class="listing-field">
+                    <label>Deadline</label>
+                    <p>
+                        <%= listing.deadline 
+                            ? new Date(listing.deadline).toDateString() 
+                            : "No deadline" %>
+                    </p>
+                </div>
+
+                <div class="listing-field">
+                    <label>Estimated Time</label>
+                    <p><%= listing.estimatedMinutes %> minutes</p>
+                </div>
+
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="listing-actions">
+                <a href="/listings/<%= listing._id %>" class="action-btn show-btn">Show</a>
+                <a href="/listings/<%= listing._id %>/edit" class="action-btn edit-btn">Edit</a>
+
+                <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+                    <button class="action-btn delete-btn">Delete</button>
+                </form>
+            </div>
+
+        </div>
+
+        <% } %>
+
+    </div>
+</div>
+
+</body>

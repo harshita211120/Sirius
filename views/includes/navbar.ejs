@@ -1,20 +1,22 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light border-bottom sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+<nav class="navbar">
+    <div class="nav-container">
 
-    <button class="navbar-toggler" type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <div class="nav-logo">
+            <a href="/">Sirius</a>
+        </div>
 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" href="#">Home</a>
-        <a class="nav-link" href="/listings">Show all listings</a>
-        <a class="nav-link" href="/listings/new">Add new Listing</a>
-        
-      </div>
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/listings/today" class="nav-link">Today's Tasks</a></li>
+
+            <li><a href="/listings" class="nav-link">All Listings</a></li>
+            <li><a href="/listings/pending" class="nav-link">Pending</a></li>
+            <li><a href="/listings/new" class="nav-link add-new" method="GET">Add New</a></li>
+        </ul>
+
+        <div class="nav-auth">
+            <a href="/login" class="login-btn">Login</a>
+        </div>
+
     </div>
-  </div>
 </nav>

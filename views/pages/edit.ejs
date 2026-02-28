@@ -1,0 +1,76 @@
+<% layout("layouts/boilerplate") %>
+<body>
+
+<div class="new-container">
+    <h2>Edit Listing</h2>
+
+    <form action="/listings/<%= listing._id %>?_method=PATCH" 
+          method="POST" 
+          class="task-form">
+
+        <!-- Title -->
+        <label>Title *</label>
+        <input type="text" 
+               name="title" 
+               value="<%= listing.title %>" 
+               required>
+
+        <!-- Description -->
+        <label>Description</label>
+        <textarea name="description"><%= listing.description %></textarea>
+
+        <!-- Category -->
+        <label>Category *</label>
+        <select name="category" required>
+            <option value="Academic" 
+              <%= listing.category === "Academic" ? "selected" : "" %>>
+              Academic
+            </option>
+
+            <option value="Personal" 
+              <%= listing.category === "Personal" ? "selected" : "" %>>
+              Personal
+            </option>
+
+            <option value="Habit" 
+              <%= listing.category === "Habit" ? "selected" : "" %>>
+              Habit
+            </option>
+        </select>
+
+        <!-- Deadline -->
+        <label>Deadline</label>
+        <input type="date" 
+               name="deadline"
+               value="<%= listing.deadline ? listing.deadline.toISOString().split('T')[0] : '' %>">
+
+        <!-- Estimated Minutes -->
+        <label>Estimated Minutes *</label>
+        <input type="number" 
+               name="estimatedMinutes"
+               min="1"
+               value="<%= listing.estimatedMinutes %>"
+               required>
+
+        <!-- Status -->
+        <label>Status *</label>
+        <select name="status" required>
+            <option value="Pending" 
+              <%= listing.status === "Pending" ? "selected" : "" %>>
+              Pending
+            </option>
+
+            <option value="Completed" 
+              <%= listing.status === "Completed" ? "selected" : "" %>>
+              Completed
+            </option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Update</button>
+
+    </form>
+</div>
+
+</body>

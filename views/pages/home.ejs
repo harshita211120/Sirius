@@ -1,0 +1,43 @@
+<% layout("layouts/boilerplate") %>
+<%- include("../includes/hero.ejs") %>
+<div>
+  <% script = `
+<script>
+   const text = "No Distractions. Just Sirius.";
+const typingElement = document.getElementById("typing-text");
+
+let index = 0;
+let isDeleting = false;
+
+function typeEffect() {
+
+    if (!isDeleting) {
+        // Typing
+        typingElement.textContent = text.substring(0, index + 1);
+        index++;
+
+        // Jab pura text likh jaye
+        if (index === text.length) {
+            setTimeout(() => {
+                isDeleting = true;
+            }, 1000); // 1 sec rukega
+        }
+
+    } else {
+        // Deleting
+        typingElement.textContent = text.substring(0, index - 1);
+        index--;
+
+        // Jab pura delete ho jaye
+        if (index === 0) {
+            isDeleting = false;
+        }
+    }
+
+    setTimeout(typeEffect, isDeleting ? 50 : 80);
+}
+
+typeEffect();
+</script>
+` %>
+</div>

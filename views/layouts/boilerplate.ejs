@@ -17,13 +17,20 @@
   <%- include('../includes/navbar.ejs') %>
 
   <!-- body  -->
+ <main class="main-wrapper">
   <div class="container">
     <%- body %>
   </div>
+</main>
   
   <!-- footer  -->
    <%- include("../includes/footer.ejs") %>
+
+ <% if (typeof script !== "undefined") { %>
+   <%- script %>
+<% } %>
    
+   <script src="/js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

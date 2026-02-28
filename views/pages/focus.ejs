@@ -1,0 +1,32 @@
+<% layout("layouts/boilerplate") %>
+<body>
+
+    <div class="container">
+
+        <!-- Main Study Timer -->
+        <div class="main-timer">
+            <h1>Study Starts In</h1>
+            <%if(time){%>
+          <div id="studyTime">00:<%=time%>:00</div>
+          <%}else{%>
+          
+            <div id="studyTime">00:30:00</div>
+           <%}%>
+            <input type="number" id="customMinutes" placeholder="Enter minutes">
+            <button class="f-btn" onclick="startStudyTimer()">Start</button>
+<button class="f-btn" id="studyPauseBtn" onclick="toggleStudyPause()">Pause</button>
+<button class="f-btn" onclick="resetStudy()">Reset</button>
+        </div>
+
+        <!-- Pomodoro Timer -->
+        <div class="pomodoro">
+            <h2>Pomodoro (25:00)</h2>
+            <div id="pomodoroTime">25:00</div>
+           <button class="f-btn" onclick="startPomodoro()">Start</button>
+<button class="f-btn" id="pomodoroPauseBtn" onclick="togglePomodoroPause()">Pause</button>
+<button class="f-btn" onclick="resetPomodoro()">Reset</button>
+        </div>
+
+    </div>
+      
+    </body>

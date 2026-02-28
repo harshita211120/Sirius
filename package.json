@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/harshita211120/Sirius#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "ejs": "^4.0.1",
     "ejs-mate": "^4.0.0",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "method-override": "^3.0.0"
   }
 }

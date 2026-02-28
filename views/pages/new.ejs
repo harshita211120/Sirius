@@ -1,0 +1,52 @@
+<% layout("layouts/boilerplate") %>
+<body>
+
+<div class="new-container">
+    <h2>Add New Task</h2>
+
+    <form action="/listings" method="POST" class="task-form">
+
+        <!-- Title -->
+        <label>Title *</label>
+        <input type="text" name="title" placeholder="Enter Task Title" required>
+
+        <!-- Description -->
+        <label>Description</label>
+        <textarea name="description" placeholder="Enter the description of task"></textarea>
+
+        <!-- Category -->
+        <label>Category *</label>
+        <select name="category" required>
+            <option value="">Select category</option>
+            <option value="Academic">Academic</option>
+            <option value="Personal">Personal</option>
+            <option value="Habit" selected>Habit</option>
+        </select>
+
+        <!-- Deadline -->
+        <label>Deadline</label>
+        <input type="date" name="deadline" required>
+
+        <!-- Estimated Minutes -->
+        <label>Estimated Minutes *</label>
+        <input type="number" name="estimatedMinutes" value="20" min="1" required>
+
+
+       
+
+        <!-- Status -->
+        <label>Status *</label>
+        <select name="status" required>
+            <option value="Pending" selected>Pending</option>
+            <option value="Completed">Completed</option>
+        </select>
+        
+        <br>
+        <br>
+        
+        <button>submit</button>
+
+    </form>
+</div>
+
+</body>

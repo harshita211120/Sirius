@@ -1,36 +1,108 @@
+/* ================= RESET ================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+/* ================= BODY ================= */
 body {
-    height: 100vh;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background-color: #000000 !important;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    width: 100%;
+    background: 393E46;
+    border-bottom: 1px solid #2a2a2a;
+    padding: 14px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
+/* LOGO */
+.nav-logo a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: #e90064;
+}
+
+/* MENU */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+/* FORCE WHITE LINKS */
+.nav-menu a,
+.nav-menu a:visited {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #e90064;
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+    text-decoration: none;
+    padding: 7px 16px;
+    border-radius: 4px;
+    background: #1a1a1a;
+    border: 1px solid #444;
+    color: #e90064;
+    font-size: 13px;
+    transition: 0.3s ease;
+}
+
+.login-btn:hover {
+    background: #E90064;
+    color: #ffffff;
+    border-color: #E90064;
+}
+
+/* ================= FORM CARD ================= */
 .container {
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
+    padding: 20px;
 }
 
 .signup-box {
-    background: #fff;
+    background: #161616;
     padding: 35px;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    border: 1px solid #e3d7d7;
 }
 
+/* HEADING */
 .signup-box h2 {
     text-align: center;
     margin-bottom: 25px;
-    color: #333;
+    color: #E90064;
+    font-weight: 500;
 }
 
+/* INPUT GROUP */
 .input-group {
     margin-bottom: 18px;
 }
@@ -38,53 +110,478 @@ body {
 .input-group label {
     display: block;
     margin-bottom: 6px;
-    font-size: 14px;
-    color: #555;
+    font-size: 13px;
+    color: #ffffff;
 }
 
+/* INPUT */
 .input-group input {
     width: 100%;
     padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    border-radius: 4px;
+    border: 1px solid #c3b5b5;
+    background: #111;
+    color: #ffffff;
     font-size: 14px;
     transition: 0.3s;
 }
 
 .input-group input:focus {
-    border-color: #2575fc;
+    border-color: #E90064;
     outline: none;
-    box-shadow: 0 0 5px rgba(37,117,252,0.3);
 }
 
+/* BUTTON */
 .btn {
     width: 100%;
     padding: 10px;
+    border-radius: 4px;
     border: none;
-    border-radius: 6px;
-    background: #2575fc;
+    background: #E90064;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .btn:hover {
-    background: #1a5edb;
+    background: #ff5f9e;
 }
 
+/* LOGIN LINK */
 .login-link {
     text-align: center;
     margin-top: 15px;
-    font-size: 14px;
+    font-size: 13px;
+    color: #ffffff;
 }
 
-.login-link a {
+.login-link a,
+.login-link a:visited {
     text-decoration: none;
-    color: #2575fc;
-    font-weight: 500;
+    color: #ff5f9e;
 }
 
 .login-link a:hover {
-    text-decoration: underline;
+    color: #E90064;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+    .nav-menu {
+        gap: 15px;
+    }
+
+    .nav-menu a {
+        font-size: 13px;
+    }
+
+    .login-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .page-wrapper {
+        padding-top: 150px;
+    }
+}
+/* footer */
+.footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.heart {
+    color: #e90064;
+    font-size: 18px;
+    animation: beat 1s infinite;
+}
+
+/* Heart beat animation */
+@keyframes beat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+/* HERO SECTION */
+/* HERO SECTION */
+.hero {
+    height: 100vh;
+    background-color: #000;   /* Pure black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    color: #ffffff;
+    margin: 0;          /* extra spacing remove */
+}
+
+/* Remove any container background if applied */
+.hero-content {
+    max-width: 800px;
+    background: none;   /* green box remove */
+    padding: 0;
+}
+
+/* TITLE */
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #e90064;
+}
+
+/* SUBTITLE */
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    color: #cccccc;
+}
+
+/* BUTTON */
+.hero-btn {
+    display: inline-block;
+    padding: 14px 35px;
+    background-color: #e90064;
+    color: white;
+    text-decoration: none;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+    background-color: #e90064;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* Main Layout */
+.focus-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;  
+}
+
+/* Common Section Styling */
+.main-timer,
+.pomodoro {
+    text-align: center;
+    padding: 30px 40px;
+    border: 3px solid #dad0d0;
+    border-radius: 8px;
+    background-color: #0d0d0d;
+    margin-top: 15px;
+}
+
+/* Headings */
+.main-timer h1,
+.pomodoro h2 {
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #e90064;
+    margin-bottom: 20px;
+}
+
+/* Timer Text */
+#studyTime {
+    font-size: 56px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+#pomodoroTime {
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: white;
+}
+
+/* Input */
+input {
+    padding: 8px 10px;
+    width: 160px;
+    background: #111;
+    border: 3px solid #d2c7c7;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Button */
+.f-btn {
+    padding: 10px 22px;
+    background-color: #e90064;
+    color: #ffffff;
+    border: 1px solid #e90064;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* Hover Effect */
+.f-btn:hover {
+    background-color: transparent;
+    color: #e90064;
+}
+
+/* Active Click Effect */
+.f-btn:active {
+    transform: scale(0.97);
+}
+
+/* Focus Outline Clean */
+.f-btn:focus {
+    outline: none;
+}
+    
+    /* new listings */
+ 
+
+.new-container {
+    margin-left:20%;
+    margin-top:5px;
+    border: 3px solid #e1d3d3;
+    background: #1a1a1a;
+    padding: 30px;
+    width: 550px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+h2 {
+    text-align: center;
+    color: #e90064 !important;
+    margin-bottom: 20px;
+}
+
+.task-form label {
+    color: #bbbbbb;
+    font-size: 14px;
+    margin-top: 12px;
+    display: block;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    background: #262626;
+    border: 3px solid #e1d3d3;
+    color: #ffffff;
+    border-radius: 6px;
+    outline: none;
+}
+
+.task-form textarea {
+    resize: none;
+    height: 80px;
+}
+
+.task-form input:focus,
+.task-form textarea:focus,
+.task-form select:focus {
+    border-color: #e90064;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    color: #cccccc;
+}
+
+button {
+   min-width: 100px;
+    margin-top: 22px;
+    padding: 12px;
+    background: #e90064;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff2a84;
+}
+/* =====================================================
+   LISTING + SINGLE COMMON STYLES (COMPACT VERSION)
+===================================================== */
+
+/* Containers */
+.listing-container,
+.single-container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Card */
+.listing-card,
+.single-card {
+    background: #161616;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Specific border differences */
+.listing-card {
+    border: 1px solid #2a2a2a;
+    margin-bottom: 25px;
+}
+
+.single-card {
+    border: 1px solid #2a2a2a;
+}
+
+/* Header */
+.listing-header,
+.single-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.listing-header h3,
+.single-header h3 {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.single-header h3 {
+    font-size: 22px;
+}
+
+/* Fields */
+.listing-field,
+.single-field {
+    margin-bottom: 15px;
+}
+
+.listing-field label,
+.single-field label {
+    font-size: 12px;
+    color: #aaaaaa;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.listing-field p,
+.single-field p {
+    color: #ffffff;
+}
+
+.single-field p {
+    font-size: 15px;
+}
+
+/* Grid */
+.listing-grid,
+.single-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status-badge.completed {
+    background: #1f3d1f;
+    color: #4caf50;
+}
+
+.status-badge.pending {
+    background: #3d2f1f;
+    color: #ff9800;
+}
+
+.status-badge.overdue {
+    background: #3d1f1f;
+    color: #f44336;
+}
+
+/* Actions */
+.listing-actions,
+.single-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Common Button Style */
+.action-btn {
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+    background: #e90064;
+    color: white;
+    border: 1px solid #e90064;
+    transition: 0.3s ease;
+}
+
+/* Back Button (only in single page) */
+.back-btn {
+    background: #e90064;
+    
+    color: #ccc;
+}
+
+#complete{
+  text-decoration: none;
+  color: #e90064;
+  font-size: 20px;
+
+}
+#complete:hover{
+   color:white;
 }
