@@ -6,6 +6,12 @@
     font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 /* ================= BODY ================= */
 body {
     background-color: #000000 !important;
@@ -358,7 +364,7 @@ body {
     }
 
     .page-wrapper {
-        padding-top: 150px;
+        padding-top: 0;
     }
 }
 /* footer */
@@ -440,7 +446,8 @@ body {
     grid-template-columns: 1fr;
     gap: 28px;
     align-items: start;
-    margin-left:10%;
+    margin: 0 auto;
+    padding-inline: 16px;
     position: relative;
     z-index: 1;
 }
@@ -700,7 +707,7 @@ input {
     border: 2px solid rgba(233, 0, 100, 0.34);
     background: #1a1a1a;
     padding: 30px;
-    width: min(100%, 550px);
+    width: min(550px, calc(100% - 32px));
     border-radius: 10px;
     box-shadow: 0 22px 46px rgba(233, 0, 100, 0.12);
 }
@@ -939,7 +946,7 @@ button:hover {
 
 @media (max-width: 1024px) {
     .main-wrapper {
-        padding-top: 108px;
+        padding-top: 100px;
     }
 
     .nav-container {
@@ -993,7 +1000,7 @@ button:hover {
 
 @media (max-width: 768px) {
     .main-wrapper {
-        padding-top: 136px;
+        padding-top: 112px;
     }
 
     .flash-message,
@@ -1004,6 +1011,11 @@ button:hover {
     .auth-page {
         max-width: 100%;
         padding: 12px;
+    }
+
+    .new-container,
+    .focus-wrapper {
+        width: calc(100% - 24px);
     }
 
     .signup-box,
@@ -1107,7 +1119,7 @@ button:hover {
     }
 
     .main-wrapper {
-        padding-top: 164px;
+        padding-top: 116px;
     }
 
     .navbar {
@@ -1142,6 +1154,13 @@ button:hover {
         width: calc(100% - 20px);
     }
 
+    .auth-page,
+    .new-container,
+    .focus-wrapper,
+    .hero-grid {
+        width: calc(100% - 20px);
+    }
+
     .hero-title {
         font-size: 1.75rem;
         border-radius: 18px;
@@ -1165,6 +1184,11 @@ button:hover {
 
     .new-container {
         padding: 20px 16px;
+    }
+
+    .listing-card,
+    .single-card {
+        padding: 18px 16px;
     }
 
     .main-timer,
