@@ -1,4 +1,9 @@
 const express = require("express");
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
@@ -11,8 +16,18 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo").default;
 
+const PORT = process.env.PORT || 8080;
+const NODE_ENV = process.env.NODE_ENV || "development";
+const MONGO_URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/planify";
+const SESSION_SECRET = process.env.SESSION_SECRET || "change-this-in-production";
+const IS_PRODUCTION = NODE_ENV === "production";
+
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
+
+if (IS_PRODUCTION) {
+  app.set("trust proxy", 1);
+}
 
 app.use(methodOverride('_method'))
 app.use(express.json());
@@ -22,23 +37,32 @@ app.use(express.static(path.join(__dirname,"public")));
 app.engine("ejs",ejsMate);
 
 async function main(){
-  await mongoose.connect('mongodb://127.0.0.1:27017/planify');
+  await mongoose.connect(MONGO_URL);
 }
 
 main()
-.then(()=>{console.log("Connected successfully")})
-.catch((err)=>{console.log(err)});
+.then(()=>{console.log("Connected to MongoDB successfully")})
+.catch((err)=>{
+  console.error("MongoDB connection error:", err);
+  process.exit(1);
+});
 
 // Session configuration
 const sessionConfig = {
-  secret: 'your-secret-key-change-this',
+  secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   store: new MongoStore({
-    mongoUrl: 'mongodb://127.0.0.1:27017/planify'
+    mongoUrl: MONGO_URL,
+    touchAfter: 24 * 3600,
+    crypto: {
+      secret: SESSION_SECRET
+    }
   }),
   cookie: {
     httpOnly: true,
+    sameSite: "lax",
+    secure: IS_PRODUCTION,
     maxAge: 1000 * 60 * 60 * 24 * 7  // 7 days
   }
 };
@@ -273,7 +297,7 @@ app.get("/signup",(req,res)=>{
 
 app.post("/signup",async(req,res)=>{
   try{
-    let {fullName,userName,email,password,confirmPassword} = req.body;
+    let {fullName,email,password,confirmPassword} = req.body;
     console.log(req.body);
    
     if(password!=confirmPassword){
@@ -288,7 +312,6 @@ app.post("/signup",async(req,res)=>{
 
      const newUser = new Users({
         fullName,
-        userName,
         email,
         password: hashedPassword,
       });
@@ -298,8 +321,7 @@ app.post("/signup",async(req,res)=>{
       req.session.user = {
         _id: newUser._id,
         fullName: newUser.fullName,
-        email: newUser.email,
-        userName: newUser.userName
+        email: newUser.email
       };
       
       setFlash(req, "success", "Account created successfully.");
@@ -328,8 +350,7 @@ app.post("/login",async(req,res)=>{
     req.session.user = {
       _id: User._id,
       fullName: User.fullName,
-      email: User.email,
-      userName: User.userName
+      email: User.email
     };
 
     setFlash(req, "success", `Welcome back, ${User.fullName}.`);
@@ -355,10 +376,17 @@ app.get("/focus", isLoggedIn, (req,res)=>{
   const time = false;
   res.render("pages/focus.ejs",{time});
 })
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    environment: NODE_ENV
+  });
+});
+
 app.use((req,res)=>{
-  res.send("Page not found");
+  res.status(404).send("Page not found");
 })
-let port = 8080;
-app.listen(port,()=>{
-  console.log("Server us running ar port 8080");
+
+app.listen(PORT,()=>{
+  console.log(`Server is running on port ${PORT}`);
 })
