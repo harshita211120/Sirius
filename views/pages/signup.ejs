@@ -4,7 +4,7 @@
     <div class="signup-box">
         <h2>Create Account</h2>
 
-        <form action="/signup" method="POST">
+        <form action="/signup" method="POST" class="auth-form">
 
             <div class="input-group">
                 <label>Full Name</label>
@@ -36,3 +36,21 @@
         </p>
     </div>
 </div>
+
+<% script = `
+<script>
+  const authForm = document.querySelector(".auth-form");
+  if (authForm) {
+    authForm.addEventListener("submit", (event) => {
+      const submitButton = authForm.querySelector('button[type="submit"]');
+      if (!submitButton || submitButton.disabled) {
+        event.preventDefault();
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Creating account...";
+    });
+  }
+</script>
+` %>

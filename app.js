@@ -306,7 +306,7 @@ app.post("/signup",async(req,res)=>{
 
     const check = await Users.findOne({email});
     if(check){
-      throw new ExpressError(409,"Email already exists");
+    throw new ExpressError(409,"Email already exists");
     }
      const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -323,9 +323,17 @@ app.post("/signup",async(req,res)=>{
         fullName: newUser.fullName,
         email: newUser.email
       };
-      
+
       setFlash(req, "success", "Account created successfully.");
-      res.redirect("/listings");
+      req.session.save((saveErr) => {
+        if (saveErr) {
+          console.log(saveErr);
+          setFlash(req, "error", "Account was created, but login could not be completed. Please login.");
+          return res.redirect("/login");
+        }
+
+        res.redirect("/listings");
+      });
   }
   catch(err){
     console.log(err);
@@ -354,7 +362,15 @@ app.post("/login",async(req,res)=>{
     };
 
     setFlash(req, "success", `Welcome back, ${User.fullName}.`);
-    res.redirect("/listings");
+    req.session.save((saveErr) => {
+      if (saveErr) {
+        console.log(saveErr);
+        setFlash(req, "error", "Unable to start your session. Please try logging in again.");
+        return res.redirect("/login");
+      }
+
+      res.redirect("/listings");
+    });
   }
 
 catch(err){
