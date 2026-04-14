@@ -5,6 +5,7 @@
         <h2>Create Account</h2>
 
         <form action="/signup" method="POST" class="auth-form">
+            <input type="hidden" name="formToken" value="<%= signupFormToken %>">
 
             <div class="input-group">
                 <label>Full Name</label>

@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== "production") {
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
+const crypto = require("crypto");
 const ejsMate = require("ejs-mate");
 const Users = require("./models/signup.js");
 const bcrypt = require("bcrypt");
@@ -84,6 +85,8 @@ const getListingDisplayStatus = (listing) => {
 const setFlash = (req, type, text) => {
   req.session.flash = { type, text };
 };
+
+const generateFormToken = () => crypto.randomBytes(24).toString("hex");
 
 const normalizeListingInput = (body) => ({
   title: body.title?.trim(),
@@ -292,13 +295,21 @@ app.get("/signup",(req,res)=>{
   if(req.session.user) {
     return res.redirect("/listings");
   }
-  res.render("pages/signup.ejs");
+  req.session.signupFormToken = generateFormToken();
+  res.render("pages/signup.ejs", { signupFormToken: req.session.signupFormToken });
 })
 
 app.post("/signup",async(req,res)=>{
   try{
-    let {fullName,email,password,confirmPassword} = req.body;
+    let {fullName,email,password,confirmPassword,formToken} = req.body;
     console.log(req.body);
+
+    if (!formToken || formToken !== req.session.signupFormToken) {
+      setFlash(req, "error", "Signup form was already submitted. Please try again.");
+      return res.redirect("/signup");
+    }
+
+    delete req.session.signupFormToken;
    
     if(password!=confirmPassword){
      throw new ExpressError(400,"Password do not match");
